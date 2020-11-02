@@ -1,0 +1,15 @@
+
+
+credits:
+
+- p5.collide2d by Ben Moren
+---- https://github.com/bmoren/p5.collide2D
+
+- js-cookie
+---- https://github.com/js-cookie/js-cookie
+
+- carrefinho
+
+ver 1.0
+- first fully working version
+
