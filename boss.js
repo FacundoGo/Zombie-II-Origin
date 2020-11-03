@@ -1,48 +1,41 @@
-class Zombie{
+class Boss{
 	constructor(){
-		this.side = int(random(4));
-		switch (this.side)
-		{
-			case 0:
-				this.x = 0;
-				this.y = int(random(height));
-				break;
-			case 1:
-				this.x = int(random(width));
-				this.y = 0;
-				break;
-			case 2:
-				this.x = width;
-				this.y = int(random(height));
-				break;
-			case 3:
-				this.x = int(random(width));
-				this.y = height;
-				break;
-		}
+        this.x = width/2;
+        this.y = 0
 		this.targetX = turPosX;
 		this.targetY = turPosY;
 		this.targetDir = createVector(this.targetX - this.x, this.targetY - this.y);
 		this.targetDir.normalize();
 		this.xSpd = this.targetDir.x*zombieSpawnMultiplier;
 		this.ySpd = this.targetDir.y*zombieSpawnMultiplier;
-		this.r = 30;
+		this.r = 100;
 		
 	}
 	
 	display(){
 		push();
 		noStroke();
-		fill('black');
+		fill('red');
 		ellipse(this.x, this.y, this.r);
 		pop();
 	}
 	
 	update(){
+		this.targetX = turPosX;
+		this.targetY = turPosY;
+		this.targetDir = createVector(this.targetX - this.x, this.targetY - this.y);
+		this.targetDir.normalize();
+		this.xSpd = this.targetDir.x*zombieSpawnMultiplier;
+		this.ySpd = this.targetDir.y*zombieSpawnMultiplier;
 		this.x += this.xSpd;
-		this.y += this.ySpd;	
+        this.y += this.ySpd;	
+        // this.x +=1
+        // this.y +=1
 	}
-	
+	updateDirection(){
+        this.targetDir = createVector(this.targetX - this.x, this.targetY - this.y);
+		this.targetDir.normalize();
+    }
 	outOfBounds(){
 		return(this.x > width+10 || this.x < -10 || this.y > height+10 || this.y < -10);
 	}

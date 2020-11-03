@@ -20,6 +20,8 @@ function drawReticle(){
 
 function gameOver(){
 	push()
+
+	mainTrack.pause();
 	
 	print("DED");
 	noStroke();
@@ -47,8 +49,7 @@ function gameOver(){
 	let highScoreString = "highscore: " + highScore;
 	text(highScoreString, 300, 360);
 	
-	
-	
+
 
 	let domHighscore = document.querySelector('#highscore');
 	domHighscore.innerText = highScore;
@@ -75,6 +76,12 @@ function reset(){
 	zombieSpawnMultiplier = 2;
 	zombieSizeMultiplier = 2;
 	score = 0;
+	level = 1;
+	loop();
+}
+function startGame(){
+	start.hide();
+	level = 1;
 	
 	loop();
 }

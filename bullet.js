@@ -32,10 +32,19 @@ class bullet{
 			if (collideOrNot){
 				impact.play();
 				targetZombies.splice(i,1);
-				score += 1;
+				score += 2;
 				return true;
 			}
 		}
 		return false;
+	}
+
+	killBoss(){
+		
+
+
+
+
+
 	}
 }

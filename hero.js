@@ -28,12 +28,19 @@ class Hero{
 			targetZombies.forEach(function(zombie){
 				zombie.update()
 			})
+			console.log(turPosX, turPosY)
 		}
 	
 	hitScan(){
 		for (var i = 0; i < targetZombies.length; i++){
 			let collideOrNot = collideCircleCircle(turPosX, turPosY, 30, targetZombies[i].myX(), targetZombies[i].myY(), targetZombies[i].myR())
 			if (collideOrNot){
+				return true;
+			}
+		}
+		for (var i = 0; i < bosses.length; i++){
+			let eaten = collideCircleCircle(turPosX, turPosY, 30, bosses[i].myX(), bosses[i].myY(), bosses[i].myR())
+			if (eaten) {
 				return true;
 			}
 		}

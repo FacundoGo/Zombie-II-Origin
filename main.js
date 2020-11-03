@@ -1,5 +1,6 @@
 let bulletsFired = [];
 let targetZombies = [];
+let bosses = [];
 let	mainHero;
 let turPosX = 300;
 let turPosY = 300;
@@ -8,14 +9,23 @@ let zombieSpawnMultiplier = 2;
 let zombieSizeMultiplier = 2;
 let score = 0;
 let Retry;
+let start;
 let domScore = document.querySelector('#score');
-let img;
-let shot;
-let impact;
-let level2;
-let zombieSounds;
+let mainScreen;
+const game = new Game();
+let newBoss;
+
+let img; // Initial backgroundimage
+let level2; // Level background image
+
+let shot; // Sound effect of the shot
+let impact; // Sound effect of impact on a zombie
+let zombieSounds; // Array of sounds made by the zombies
+let mainTrack;
+let bossTrack;
+
 let levelData = document.querySelector('#level')
-let level = 1;
+let level = 0;
 let highScore = 0;
 
 
@@ -24,14 +34,23 @@ function preload() {
 	img = loadImage('/images/map.png');
 	level2 = loadImage('/images/level2.png')
 	soundFormats('mp3', 'ogg');
+
+	//----------------------------------------GUN & IMPACT SOUNDS--------------------------------------
 	shot = loadSound('/sounds/gun.mp3')
 	impact = loadSound('/sounds/impact.mp3')
-	// zombieScream = loadSound('/sounds/zombie.mp3')
+	
+	//----------------------------------------BACKING TRACKS--------------------------------------
+	mainTrack = loadSound('/sounds/background-music1.mp3')
+	bossTrack = loadSound('/sounds/boss-fight.mp3')
+
+	//---------------------------------------ZOMBIE SOUNDS--------------------------------------
 	zombieSounds = [loadSound("/sounds/zombie1.mp3"),
 		loadSound("/sounds/zombie2.mp3"),
 		loadSound("/sounds/zombie3.mp3"),
 		loadSound("/sounds/zombie4.mp3")
 	  ]
+
+
   }
 
 function setup() {
@@ -42,6 +61,15 @@ function setup() {
 	Retry.hide();
 	console.log(Retry)
 	rock = new Obstacle();
+	start = createButton('Click to start')
+	start.mousePressed(startGame);
+	start.hide();
+	
+	
+	game.setupGame();
+
+
+	// mainTrack.play();
 
 }
 
@@ -54,102 +82,19 @@ function mousePressed(){
 	shot.play();
 }
 
+function bossFight() {
+	if (bossTrack.play() !== true){
+		bossTrack.play();
+	}
+}
+
 function draw() {
+	game.drawGame();
 
 //----------------------------------------LEVELS--------------------------------------
 
-	if (score % 15 == 0 && score != 0){
-		level ++
-		levelData.innerText = level
-		// console.log(score)
-	}
 
-//----------------------------------------BACKGROUND IMAGE AND TRACK--------------------------------------
-	if (level == 1){
-		background(img);
-	} else if (level >= 2){
-		background(level2)
-	}
 
-//----------------------------------------OBSTCLES--------------------------------------
-
-rock.display();
-if (mainHero.roadblock()){
-	console.log('hit');
-}
-
-	
-	drawReticle();
-	
-	//----------------------------------------ZOMBIE-SPAWN--------------------------------------
-	targetTimer += 1;
-	let spawnInterval = int(100 / zombieSpawnMultiplier);
-	let randSound = Math.floor(Math.random()*zombieSounds.length)
-	//print(spawnInterval)
-	if (targetTimer % spawnInterval == 0){
-		// let newZombie = new Zombie();
-		// targetZombies.push(newZombie);
-		// score += 5;
-		// every certain amount of time, iterate through the sound library
-		// if (targetTimer % 3 == 0) {
-		// 	zombieSounds[randSound].play();
-		// }
-	}
-
-	
-	
-	
-	//----------------------------------------------BULLETS----------------------------------------
-	for (var i = 0; i < bulletsFired.length; i++){
-		bulletsFired[i].display();
-		bulletsFired[i].update();
-		if (bulletsFired[i].outOfBounds()){
-      		bulletsFired.splice(i,1);
-    	}
-		else if (bulletsFired[i].hitScan()){
-      		bulletsFired.splice(i,1);
-    	}
-	}
-	
-	
-	//-------------------------------------------ZOMBIES----------------------------------------
-	for (var i = 0; i < targetZombies.length; i++){
-		targetZombies[i].display();
-		targetZombies[i].update();
-		if (targetZombies[i].outOfBounds()){
-      		targetZombies.splice(i,1);
-    	}
-	}
-	
-	zombieSpawnMultiplier += 0.001;
-	if (zombieSizeMultiplier < 5){
-		zombieSizeMultiplier += 0.001;
-	}
-	
-	//------------------------------------------HERO-AND-HERO-DED---------------------------------------a
-	mainHero.display();
-	mainHero.move();
-	if (mainHero.hitScan()){
-		gameOver();
-	}
-
-	
-	//------------------------------------------TUTORIAL------------------------------------------------
-	noStroke();
-	if (targetTimer < 300){
-		textAlign(LEFT);
-		textFont('Helvetica');
-		textSize(14);
-		fill(235);
-		text("arrow keys or wasd: move", 35, 35);
-		text("mouse: aim", 35, 50);
-		text("left click: fire", 35, 65);
-	}
-	fill(60);
-	textAlign(CENTER);
-	text("version 1.01 by facundoGo", 300, 580);
-
-	domScore.innerText = score;
 }
 
 
