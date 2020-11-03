@@ -16,7 +16,10 @@ const game = new Game();
 let newBoss;
 
 let img; // Initial backgroundimage
-let level2; // Level background image
+let level2img; // Level background image
+let level3img;
+let level4img;
+let finalimg;
 
 let shot; // Sound effect of the shot
 let impact; // Sound effect of impact on a zombie
@@ -27,12 +30,18 @@ let bossTrack;
 let levelData = document.querySelector('#level')
 let level = 0;
 let highScore = 0;
-
+let bossThreshold = 2;
 
 function preload() {
 	// preload() runs once
 	img = loadImage('/images/map.png');
-	level2 = loadImage('/images/level2.png')
+	level2img = loadImage('/images/level2.png')
+	level3img = loadImage('/images/level3.png');
+	level4img = loadImage('/images/level4.png');
+	finalimg = loadImage('/images/final.png');
+
+
+
 	soundFormats('mp3', 'ogg');
 
 	//----------------------------------------GUN & IMPACT SOUNDS--------------------------------------

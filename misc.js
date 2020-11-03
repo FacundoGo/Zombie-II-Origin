@@ -84,4 +84,100 @@ function startGame(){
 	level = 1;
 	
 	loop();
+
+
+function gameOver(){
+	push()
+
+	mainTrack.pause();
+	
+	print("DED");
+	noStroke();
+	fill(20)
+	rect(0,200,600,200)
+	
+	textFont('Georgia');
+	textAlign(CENTER);
+	textSize(50);
+	fill(170,20,20);
+	text("YOU DIED",300,300)
+		
+	textFont('Helvetica');
+	textSize(18);
+	fill(235);
+	let scoreString = "score: " + score;
+	text(scoreString, 300, 340);
+	
+	if (score > highScore) {
+		highScore = score;
+		// Cookies.remove('highscore');
+		// Cookies.set('highscore', highScore);
+	}
+	
+	let highScoreString = "highscore: " + highScore;
+	text(highScoreString, 300, 360);
+	
+
+
+	let domHighscore = document.querySelector('#highscore');
+	domHighscore.innerText = highScore;
+
+	Retry.show();
+	Retry.position(250, 380);
+	Retry.size(100,30);
+	Retry.style('background-color', '#202020');
+	Retry.style('color', '#FFFFFF');
+	Retry.mousePressed(reset);
+	
+	pop();
+	noLoop();
+	
+}}
+
+
+function youWin(){
+	push()
+	mainTrack.pause();
+	
+	print("WIN");
+	noStroke();
+	fill(20)
+	rect(0,200,600,200)
+	
+	textFont('Georgia');
+	textAlign(CENTER);
+	textSize(50);
+	fill(170,20,20);
+	text("YOU DIED",300,300)
+		
+	textFont('Helvetica');
+	textSize(18);
+	fill(235);
+	let scoreString = "score: " + score;
+	text(scoreString, 300, 340);
+	
+	if (score > highScore) {
+		highScore = score;
+		// Cookies.remove('highscore');
+		// Cookies.set('highscore', highScore);
+	}
+	
+	let highScoreString = "highscore: " + highScore;
+	text(highScoreString, 300, 360);
+	
+
+
+	let domHighscore = document.querySelector('#highscore');
+	domHighscore.innerText = highScore;
+
+	Retry.show();
+	Retry.position(250, 380);
+	Retry.size(100,30);
+	Retry.style('background-color', '#202020');
+	Retry.style('color', '#FFFFFF');
+	Retry.mousePressed(reset);
+	
+	pop();
+	noLoop();
+	
 }

@@ -40,11 +40,22 @@ class bullet{
 	}
 
 	killBoss(){
-		
-
-
-
-
-
+		for (var i = 0; i < bosses.length; i++){
+			var hitBoss = collideCircleCircle(this.x, this.y, 10, bosses[i].myX(), bosses[i].myY(), bosses[i].myR())
+			if (hitBoss){
+				if (bosses[0].health == 1){
+					score += 100
+					youWin()
+					return true
+				}
+				// impact.play();
+				bosses[0].health -= 1
+				score += 2;
+				console.log(bosses[0].health)
+				return true;
+			}
+		}
+		return false;
 	}
+	
 }

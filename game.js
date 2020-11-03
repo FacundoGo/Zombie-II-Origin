@@ -31,7 +31,6 @@ class Game {
         } else if (level == 'FINAL'){
             
             alert('Final BOSS')
-            noLoop();
         }
     }
 
@@ -42,30 +41,16 @@ class Game {
         } else if (level == 'FINAL'){
             
             // drawReticle();
-            switch(level){
-                case 1:
-                    image(img, 0, 0, width, height);
-                    
-                    // background(img).y -= 20;
-                    if (img.y > 100) {
-                      img.x = width;
-                    }
-                    break;
-                case 2:
-                    background(level2);
-                    break;
-                default:
-                    background(img);
-                    break;
-            }	
+            background(finalimg);
 
             let spawnInterval = int(100 / zombieSpawnMultiplier);
-            if (score == 2){
+            if (score == bossThreshold){
                 let newBoss = new Boss();
                 bosses.push(newBoss);
                 console.log('new boss added')
                 score ++
             }
+
             bosses[0].display();
             bosses[0].update();
             if (bosses[0].outOfBounds()){
@@ -82,10 +67,11 @@ class Game {
                 if (bulletsFired[i].outOfBounds()){
                       bulletsFired.splice(i,1);
                 }
-                else if (bulletsFired[i].hitScan()){
+                else if (bulletsFired[i].killBoss()){
                       bulletsFired.splice(i,1);
                 }
             }
+            
             
         
             //------------------------------------------HERO-AND-HERO-DED---------------------------------------a
@@ -103,7 +89,7 @@ class Game {
         //----------------------------------------ALL OTHER LEVELS--------------------------------------
 
         } else {
-            if (score >= 10 ){
+            if (score >= bossThreshold){
                 console.log(level)
                 level = "FINAL"
                 levelData.innerText = level
@@ -118,8 +104,9 @@ class Game {
                 levelData.innerText = level
             } else if (score >= 2){
                 console.log(level)
-                level = 'FINAL'
+                level = 'FINAL';
                 levelData.innerText = level
+                game.setupGame();
                 // bossFight();
             }
         
@@ -127,18 +114,16 @@ class Game {
         //----------------------------------------BACKGROUND IMAGE AND TRACK--------------------------------------
         switch(level){
             case 1:
-                image(img, 0, 0, width, height);
-                
-                // background(img).y -= 20;
-                if (img.y > 100) {
-                  img.x = width;
-                }
+                background(img);
                 break;
             case 2:
-                background(level2);
+                background(level2img);
                 break;
-            default:
-                background(img);
+            case 3:
+                background(level3img);
+                break;
+            case 4:
+                background(level4img);
                 break;
         }	
         

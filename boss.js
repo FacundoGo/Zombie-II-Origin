@@ -9,6 +9,7 @@ class Boss{
 		this.xSpd = this.targetDir.x*zombieSpawnMultiplier;
 		this.ySpd = this.targetDir.y*zombieSpawnMultiplier;
 		this.r = 100;
+		this.health = 100;
 		
 	}
 	

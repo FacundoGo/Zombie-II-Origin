@@ -28,7 +28,7 @@ class Hero{
 			targetZombies.forEach(function(zombie){
 				zombie.update()
 			})
-			console.log(turPosX, turPosY)
+			// console.log(turPosX, turPosY)
 		}
 	
 	hitScan(){
