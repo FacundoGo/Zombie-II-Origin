@@ -1,15 +1,23 @@
-let move = 3;
+let move = 5;
 class Hero{
 	constructor(){
 	}
 	
 	display(){
-		push()
-		stroke(230, 255, 0);
-		fill('blue');
-		ellipse(turPosX, turPosY, 30);
+		push();
+		// stroke(230, 255, 0);
+		// fill('blue');
+		// ellipse(turPosX, turPosY, 30,40);
+
+		let a = atan2(mouseY - turPosY, mouseX - turPosX);
+
+		translate(turPosX, turPosY)
+		rotate(a)
+		image(hero, -25, -25, 50,50)
 		pop();
+		
 	}
+
 	
 	move(){
 			if ((keyIsDown(65) || keyIsDown(LEFT_ARROW)) && turPosX > 5) {
@@ -28,9 +36,14 @@ class Hero{
 			targetZombies.forEach(function(zombie){
 				zombie.update()
 			})
-			// console.log(turPosX, turPosY)
+			
+
+
 		}
 	
+
+
+
 	hitScan(){
 		for (var i = 0; i < targetZombies.length; i++){
 			let collideOrNot = collideCircleCircle(turPosX, turPosY, 30, targetZombies[i].myX(), targetZombies[i].myY(), targetZombies[i].myR())
@@ -41,17 +54,18 @@ class Hero{
 		for (var i = 0; i < bosses.length; i++){
 			let eaten = collideCircleCircle(turPosX, turPosY, 30, bosses[i].myX(), bosses[i].myY(), bosses[i].myR())
 			if (eaten) {
+				console.log('eaten')
 				return true;
 			}
 		}
 		return false;
 	}
-	roadblock(){
-		let hitRock = collideRectCircle(rock.x, rock.y, 60, 60, turPosX, turPosY, 30)
-		if (hitRock){
-			move = (move + 5) *-1
-		} else {
-			move = 5;
-		}
-	}
+	// roadblock(){
+	// 	let hitRock = collideRectCircle(rock.x, rock.y, 60, 60, turPosX, turPosY, 30)
+	// 	if (hitRock){
+	// 		move = (move + 5) *-1
+	// 	} else {
+	// 		move = 5;
+	// 	}
+	// }
 }

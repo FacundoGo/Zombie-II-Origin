@@ -1,7 +1,7 @@
 class bullet{
 	constructor(xSpd, ySpd){
-		this.x = turPosX;
-		this.y = turPosY;
+		this.x = turPosX + (20);
+		this.y = turPosY + (10);
 		this.xSpd = 12*xSpd;
 		this.ySpd = 12*ySpd;
 	}
@@ -41,7 +41,7 @@ class bullet{
 
 	killBoss(){
 		for (var i = 0; i < bosses.length; i++){
-			var hitBoss = collideCircleCircle(this.x, this.y, 10, bosses[i].myX(), bosses[i].myY(), bosses[i].myR())
+			var hitBoss = collideCircleCircle(this.x, this.y, 50, bosses[i].myX(), bosses[i].myY(), bosses[i].myR())
 			if (hitBoss){
 				if (bosses[0].health == 1){
 					score += 100
@@ -50,7 +50,7 @@ class bullet{
 				}
 				// impact.play();
 				bosses[0].health -= 1
-				score += 2;
+				// score += 2;
 				console.log(bosses[0].health)
 				return true;
 			}

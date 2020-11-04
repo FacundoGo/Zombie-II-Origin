@@ -29,7 +29,7 @@ class Game {
 
 
         } else if (level == 'FINAL'){
-            
+            // bossTrack.play();
             alert('Final BOSS')
         }
     }
@@ -38,12 +38,13 @@ class Game {
 
         if (level == 0){
 
+
         } else if (level == 'FINAL'){
-            
-            // drawReticle();
+            //--------------------------------------------------------------------------------------------
+            //----------------------------------------------BOSS BATTLE DRAW---------------------------------------
             background(finalimg);
 
-            let spawnInterval = int(100 / zombieSpawnMultiplier);
+            // let spawnInterval = int(100 / zombieSpawnMultiplier);
             if (score == bossThreshold){
                 let newBoss = new Boss();
                 bosses.push(newBoss);
@@ -59,7 +60,7 @@ class Game {
                 
           }
             // console.log(bosses)
-            
+            drawReticle();
             //----------------------------------------------BULLETS----------------------------------------
             for (var i = 0; i < bulletsFired.length; i++){
                 bulletsFired[i].display();
@@ -74,7 +75,7 @@ class Game {
             
             
         
-            //------------------------------------------HERO-AND-HERO-DED---------------------------------------a
+            //------------------------------------------HERO-AND-HERO-DEATH---------------------------------------a
             mainHero.display();
             mainHero.move();
             if (mainHero.hitScan()){
@@ -85,7 +86,7 @@ class Game {
             domScore.innerText = score;
 
 
-
+            //---------------------------------------------------------------------------------------
         //----------------------------------------ALL OTHER LEVELS--------------------------------------
 
         } else {
@@ -93,22 +94,25 @@ class Game {
                 console.log(level)
                 level = "FINAL"
                 levelData.innerText = level
-                // game.setupGame();
-            } else if (score >= 6){
+                game.setupGame();
+            } else if (score >= 40){
                 console.log(level)
                 level = 4
                 levelData.innerText = level
-            } else if (score >= 4){
+            } else if (score >= 20){
                 console.log(level)
                 level = 3
                 levelData.innerText = level
-            } else if (score >= 2){
+            } else if (score >= 4){
                 console.log(level)
                 level = 'FINAL';
                 levelData.innerText = level
-                game.setupGame();
+                game.setupGame();  
                 // bossFight();
             }
+
+            // for fast testing, the "game.setupGame(); function is accessed after level"
+            // before deployment, assign the proper game levels and uncomment the final level gamesetup
         
  
         //----------------------------------------BACKGROUND IMAGE AND TRACK--------------------------------------
@@ -128,12 +132,12 @@ class Game {
         }	
         
         
-        //----------------------------------------OBSTCLES--------------------------------------
+        //----------------------------------------OBSTACLES--------------------------------------
         
         // rock.display();
-        if (mainHero.roadblock()){
-            console.log('hit');
-        }
+        // if (mainHero.roadblock()){
+        //     console.log('hit');
+        // }
         
             
             drawReticle();
@@ -184,26 +188,15 @@ class Game {
                 zombieSizeMultiplier += 0.001;
             }
             
-           //-------------------------------------------BOSS----------------------------------------
-        
-        
-        //    if (newBoss !== undefined){
-        // 	newBoss.display();
-        // 	newBoss.update();
-        // 	console.log(newBoss)
-        // 	if (newBoss.outOfBounds()){
-        // 		newBoss.updateDirection();
-        //   }
-        //    } else {
-        // 	   return
-        //    }
-        
-        
+      
         
             //------------------------------------------HERO-AND-HERO-DED---------------------------------------a
             mainHero.display();
             mainHero.move();
+            // HERO ROTATION HERE 
+
             if (mainHero.hitScan()){
+                console.log('touched')
                 gameOver();
             }
         

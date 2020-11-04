@@ -1,0 +1,15 @@
+Spritesheets uses a grid of 384x288px per animation pictures.
+
+
+
+Full size and 6 more animations available on Patreon & Itch.io :
+
+https://cethiel.itch.io/
+
+https://www.patreon.com/cethiel
+
+
+
+Credits (Not Required) :
+
+https://opengameart.org/users/cethiel
