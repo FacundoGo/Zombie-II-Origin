@@ -10,23 +10,24 @@ class Game {
             fill(20)
             // rect(0,200,600,200)
 
-            textFont('Arial');
+            textFont('Creepster');
             textAlign(CENTER);
-            textSize(40);
-            fill(170,20,20);
-            text("CLICK TO START",300,300)
+            textSize(50);
+            fill('black');
+            text("READY?",300,300)
+            text("CLICK TO START",300,350)
 
-            start.show();
-            textAlign(LEFT);
-            textFont('Arial');
-            textSize(14);
+            // start.show();
+            textAlign(CENTER);
+            textFont('Creepster');
+            textSize(22);
             fill(235);
-            text("arrow keys or wasd: move", 35, 35);
-            text("mouse: aim", 35, 50);
-            text("left click: fire", 35, 65);
-            
-            noLoop();
+            text("Move with Arrow keys or wasd", 300, 400);
+            text("Aim with mouse", 300, 425);
+            text("Click to shoot", 300, 450);
 
+            noLoop();
+            
 
         } else if (level == 'FINAL'){
             // bossTrack.play();
@@ -36,10 +37,13 @@ class Game {
 
     drawGame(){
 
+        
         if (level == 0){
-
-
-        } else if (level == 'FINAL'){
+            fill('blue')
+            rect(100, 100 ,100 ,100)
+        } 
+    
+        else if (level == 'FINAL'){
             //--------------------------------------------------------------------------------------------
             //----------------------------------------------BOSS BATTLE DRAW---------------------------------------
             background(finalimg);
@@ -91,10 +95,10 @@ class Game {
 
         } else {
             if (score >= bossThreshold){
-                console.log(level)
+                console.log('is this happening?')
                 level = "FINAL"
                 levelData.innerText = level
-                game.setupGame();
+                // game.setupGame();
             } else if (score >= 40){
                 console.log(level)
                 level = 4
@@ -202,16 +206,7 @@ class Game {
         
             
             //------------------------------------------TUTORIAL------------------------------------------------
-            noStroke();
-            if (targetTimer < 300){
-                textAlign(LEFT);
-                textFont('Helvetica');
-                textSize(14);
-                fill(235);
-                text("arrow keys or wasd: move", 35, 35);
-                text("mouse: aim", 35, 50);
-                text("left click: fire", 35, 65);
-            }
+
             fill(60);
             textAlign(CENTER);
             text("version 1.01 by facundoGo", 300, 580);

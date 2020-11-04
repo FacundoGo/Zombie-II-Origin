@@ -14,7 +14,7 @@ let domScore = document.querySelector('#score');
 let mainScreen;
 const game = new Game();
 let newBoss;
-
+let canvas;
 
 let hero; // image of the hero
 let zombie1; // image of the zombie
@@ -36,6 +36,8 @@ let levelData = document.querySelector('#level')
 let level = 0;
 let highScore = 0;
 let bossThreshold = 4;
+
+let d, g;
 
 function preload() {
 	// preload() runs once
@@ -71,16 +73,18 @@ function preload() {
   }
 
 function setup() {
-	createCanvas(600, 600);
+	canvas = createCanvas(600, 600);
+	// canvas.mouseClicked(start);
+	d = 10;
+	g = 100;
 	angleMode(DEGREES);
 	mainHero = new Hero(300,300);
-	Retry = createButton('retry');
-	Retry.hide();
+	// Retry = createButton('retry');
+	// Retry.hide();
 	console.log(Retry)
-	rock = new Obstacle();
-	start = createButton('Click to start')
-	start.mousePressed(startGame);
-	start.hide();
+	// start = createButton('')
+	canvas.mousePressed(startGame);
+	// start.hide();
 	angleMode(DEGREES)
 	
 	
@@ -98,19 +102,13 @@ function mousePressed(){
 
 	oneBullet = new bullet(mouseVector.x, mouseVector.y);
 	bulletsFired.push(oneBullet);
-	shot.play();
+	// shot.play();
 }
 
 function draw() {
 	game.drawGame();
 
-//----------------------------------------LEVELS--------------------------------------
-
-
-
-}
-
-
+	}
 
 	
 

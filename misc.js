@@ -3,7 +3,7 @@ function getMouseVector(){
 	let mouseYalt = mouseY - turPosY;
 	let mouseDir = createVector(mouseXalt, mouseYalt);
 	mouseDir.normalize();
-	console.log(mouseDir)
+	// console.log(mouseDir)
 	return mouseDir;
 }
 	
@@ -55,55 +55,62 @@ function gameOver(){
 	let domHighscore = document.querySelector('#highscore');
 	domHighscore.innerText = highScore;
 
-	Retry.show();
-	Retry.position(250, 380);
-	Retry.size(100,30);
-	Retry.style('background-color', '#202020');
-	Retry.style('color', '#FFFFFF');
-	Retry.mousePressed(reset);
-	
+	// Retry.show();
+	// Retry.position(250, 380);
+	// Retry.size(100,30);
+	// Retry.style('background-color', '#202020');
+	// Retry.style('color', '#FFFFFF');
+	// Retry.mousePressed(reset);
+
+	canvas.mousePressed(reset);
 	pop();
 	noLoop();
 	
 }
 
 function reset(){
-	Retry.hide();
+	// Retry.hide();
+	
 	bulletsFired = [];
 	targetZombies = [];
-	turPosX = 100;
-	turPosY = 100;
+	turPosX = 300;
+	turPosY = 300;
 	targetTimer = 0;
 	zombieSpawnMultiplier = 1;
 	zombieSizeMultiplier = 1;
 	score = 0;
-	level = 1;
+	level = 0;
+	levelData.innerText = level;
+	clear();
+	game.setupGame();
+	setup();
 	loop();
 }
 function startGame(){
-	start.hide();
+	// start.hide();
 	level = 1;
 	
 	loop();
-
+}
 
 function gameOver(){
 	push()
 
 	mainTrack.pause();
+	bossTrack.pause();
 	
-	print("DED");
+	// print("DED");
 	noStroke();
 	fill(20)
-	rect(0,200,600,200)
+	rect(0,0,width,height)
 	
-	textFont('Georgia');
+	textFont('Creepster');
 	textAlign(CENTER);
 	textSize(50);
 	fill(170,20,20);
-	text("YOU DIED",300,300)
+	text("GAME OVER",300,300)
 		
-	textFont('Helvetica');
+	textFont('Creepster');
 	textSize(18);
 	fill(235);
 	let scoreString = "score: " + score;
@@ -123,17 +130,17 @@ function gameOver(){
 	let domHighscore = document.querySelector('#highscore');
 	domHighscore.innerText = highScore;
 
-	Retry.show();
-	Retry.position(250, 380);
-	Retry.size(100,30);
-	Retry.style('background-color', '#202020');
-	Retry.style('color', '#FFFFFF');
-	Retry.mousePressed(reset);
-	
+	// Retry.show();
+	// Retry.position(250, 380);
+	// Retry.size(100,30);
+	// Retry.style('background-color', '#202020');
+	// Retry.style('color', '#FFFFFF');
+	// Retry.mousePressed(reset);
+	canvas.mousePressed(reset);
 	pop();
 	noLoop();
 	
-}}
+}
 
 
 function youWin(){
@@ -171,12 +178,12 @@ function youWin(){
 	let domHighscore = document.querySelector('#highscore');
 	domHighscore.innerText = highScore;
 
-	Retry.show();
-	Retry.position(250, 380);
-	Retry.size(100,30);
-	Retry.style('background-color', '#202020');
-	Retry.style('color', '#FFFFFF');
-	Retry.mousePressed(reset);
+	// Retry.show();
+	// Retry.position(250, 380);
+	// Retry.size(100,30);
+	// Retry.style('background-color', '#202020');
+	// Retry.style('color', '#FFFFFF');
+	// Retry.mousePressed(reset);
 	
 	pop();
 	noLoop();
