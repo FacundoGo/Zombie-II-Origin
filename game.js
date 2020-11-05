@@ -172,13 +172,13 @@ class Game {
                 // console.log(newZombie)
             }
                 // every certain amount of time, iterate through the sound library
-                if (targetTimer % 200 == 0) {
-                	zombieSounds[randSound].play();
-                }
+
                 // console.log('zombie created')
             }
         
-            
+            if (targetTimer % 200 == 0) {
+                zombieSounds[randSound].play();
+            }
             
             
             //----------------------------------------------BULLETS----------------------------------------
