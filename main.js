@@ -62,18 +62,18 @@ function preload() {
 	soundFormats('mp3', 'ogg');
 
 	//----------------------------------------GUN & IMPACT SOUNDS--------------------------------------
-	shot = loadSound('/sounds/gun.mp3')
-	impact = loadSound('/sounds/impact.mp3')
+	shot = loadSound('./sounds/gun.mp3')
+	impact = loadSound('./sounds/impact.mp3')
 	
 	//----------------------------------------BACKING TRACKS--------------------------------------
-	mainTrack = loadSound('/sounds/background-music1.mp3')
-	bossTrack = loadSound('/sounds/boss-fight.mp3')
+	mainTrack = loadSound('./sounds/background-music1.mp3')
+	bossTrack = loadSound('./sounds/boss-fight.mp3')
 
 	//---------------------------------------ZOMBIE SOUNDS--------------------------------------
-	zombieSounds = [loadSound("/sounds/zombie1.mp3"),
-		loadSound("/sounds/zombie2.mp3"),
-		loadSound("/sounds/zombie3.mp3"),
-		loadSound("/sounds/zombie4.mp3")
+	zombieSounds = [loadSound("./sounds/zombie1.mp3"),
+		loadSound("./sounds/zombie2.mp3"),
+		loadSound("./sounds/zombie3.mp3"),
+		loadSound("./sounds/zombie4.mp3")
 	  ]
 
 
