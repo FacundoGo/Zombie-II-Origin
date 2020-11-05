@@ -160,7 +160,7 @@ class Game {
             
             //----------------------------------------ZOMBIE-SPAWN--------------------------------------
             targetTimer += 1;
-            console.log(targetTimer)
+         
             let spawnInterval = int(100 / zombieSpawnMultiplier);
             let randSound = Math.floor(Math.random()*zombieSounds.length)
             //print(spawnInterval)
