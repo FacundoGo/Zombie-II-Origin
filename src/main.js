@@ -42,8 +42,7 @@ let highScore = 0;
 let bossThreshold = 4;
 
 
-let gameType = document.querySelector('#mySelect').value;
-console.log(gameType)
+
 let d, g;
 
 function preload() {
