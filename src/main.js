@@ -48,15 +48,15 @@ let d, g;
 
 function preload() {
 	// preload() runs once
-	img = loadImage('/images/map.png');
-	level2img = loadImage('/images/level2.png')
-	level3img = loadImage('/images/level3.png');
-	level4img = loadImage('/images/level4.png');
-	finalimg = loadImage('/images/final.png');
+	img = loadImage('./images/map.png');
+	level2img = loadImage('./images/level2.png')
+	level3img = loadImage('./images/level3.png');
+	level4img = loadImage('./images/level4.png');
+	finalimg = loadImage('./images/final.png');
 
-	hero = loadImage('/images/mainHero.png')
-	zombie1 = loadImage('/images/zombie-gif.png')
-	bossImg = loadImage('/images/boss.png')
+	hero = loadImage('./images/mainHero.png')
+	zombie1 = loadImage('./images/zombie-gif.png')
+	bossImg = loadImage('./images/boss.png')
 
 
 	soundFormats('mp3', 'ogg');
