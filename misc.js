@@ -73,6 +73,7 @@ function reset(){
 	
 	bulletsFired = [];
 	targetZombies = [];
+	bosses = [];
 	turPosX = 300;
 	turPosY = 300;
 	targetTimer = 0;
@@ -89,7 +90,7 @@ function reset(){
 function startGame(){
 	// start.hide();
 	level = 1;
-	
+	levelData.innerText = level
 	loop();
 }
 
@@ -98,7 +99,8 @@ function gameOver(){
 
 	mainTrack.pause();
 	bossTrack.pause();
-	
+	clear();
+	// game.setupGame();
 	// print("DED");
 	noStroke();
 	fill(20)
@@ -144,23 +146,31 @@ function gameOver(){
 
 
 function youWin(){
-	push()
+	// clear();
+	// push()
+	
 	mainTrack.pause();
+	bossTrack.pause();
+	clear();
+	level = 0;
+	alert('YOU SURVIVED')
+	// game.setupGame();
+
+	// print("WIN");
+	// noStroke();
+	// fill('gray')
+	// rect(0,0,width,width)
 	
-	print("WIN");
-	noStroke();
-	fill(20)
-	rect(0,200,600,200)
-	
-	textFont('Georgia');
+	textFont('Creepster');
 	textAlign(CENTER);
 	textSize(50);
-	fill(170,20,20);
-	text("YOU SURVIVED",300,300)
+	fill('green');
+	text("WINNER",300,200)
+	text("YOU SURVIVED...ANOTHER DAY",300,300)
 		
-	textFont('Helvetica');
-	textSize(18);
-	fill(235);
+	textFont('Creepster');
+	textSize(25);
+	fill('black');
 	let scoreString = "score: " + score;
 	text(scoreString, 300, 340);
 	
@@ -171,9 +181,9 @@ function youWin(){
 	}
 	
 	let highScoreString = "highscore: " + highScore;
-	text(highScoreString, 300, 360);
-	
-
+	text(highScoreString, 300, 370);
+	text('Click anywhere to restart', 300,390)
+	print('does it get here?')
 
 	let domHighscore = document.querySelector('#highscore');
 	domHighscore.innerText = highScore;
@@ -184,8 +194,8 @@ function youWin(){
 	// Retry.style('background-color', '#202020');
 	// Retry.style('color', '#FFFFFF');
 	// Retry.mousePressed(reset);
-	
-	pop();
+	canvas.mousePressed(reset)
+	// pop();
 	noLoop();
 	
 }

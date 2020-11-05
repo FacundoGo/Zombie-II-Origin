@@ -30,26 +30,31 @@ class Game {
             
 
         } else if (level == 'FINAL'){
-            // bossTrack.play();
+            mainTrack.pause();
+            bossTrack.play();
+            
             alert('Final BOSS')
+            targetZombies = [];
         }
     }
 
     drawGame(){
 
         
-        if (level == 0){
-            fill('blue')
-            rect(100, 100 ,100 ,100)
+        if (level === 0){
+            // fill('red')
+            // rect(10, 10 , 10 , boss.health)
         } 
     
-        else if (level == 'FINAL'){
+        else if (level === 'FINAL'){
             //--------------------------------------------------------------------------------------------
             //----------------------------------------------BOSS BATTLE DRAW---------------------------------------
             background(finalimg);
-
+            console.log(level)
+            
+ 
             // let spawnInterval = int(100 / zombieSpawnMultiplier);
-            if (score == bossThreshold){
+            if (score == (baseline*4)+1){
                 let newBoss = new Boss();
                 bosses.push(newBoss);
                 console.log('new boss added')
@@ -60,9 +65,9 @@ class Game {
             bosses[0].update();
             if (bosses[0].outOfBounds()){
                 bosses[0].x = width/2
-                bosses[0].y = 0
-                
+                bosses[0].y = 0     
           }
+          bosses[0].healthBar();
             // console.log(bosses)
             drawReticle();
             //----------------------------------------------BULLETS----------------------------------------
@@ -89,29 +94,36 @@ class Game {
             
             domScore.innerText = score;
 
-
+           
             //---------------------------------------------------------------------------------------
         //----------------------------------------ALL OTHER LEVELS--------------------------------------
 
         } else {
-            if (score >= bossThreshold){
-                console.log('is this happening?')
+            if (score === baseline*4){
+                
+                level = "FINAL";
+                levelData.innerText = level;
+                game.setupGame();
+                score ++} 
+                else if (score >= baseline*4){
+                
                 level = "FINAL"
-                levelData.innerText = level
-                // game.setupGame();
-            } else if (score >= 40){
+                // levelData.innerText = level
+                
+            } else if (score >= baseline*3){
                 console.log(level)
                 level = 4
                 levelData.innerText = level
-            } else if (score >= 20){
+            } else if (score >= (baseline*2)){
                 console.log(level)
                 level = 3
                 levelData.innerText = level
-            } else if (score >= 4){
-                console.log(level)
-                level = 'FINAL';
+            } else if (score >= baseline){
+                // console.log(level)
+                level = 2;
                 levelData.innerText = level
-                game.setupGame();  
+                clear();
+                // game.setupGame();  
                 // bossFight();
             }
 
@@ -148,18 +160,22 @@ class Game {
             
             //----------------------------------------ZOMBIE-SPAWN--------------------------------------
             targetTimer += 1;
+            console.log(targetTimer)
             let spawnInterval = int(100 / zombieSpawnMultiplier);
             let randSound = Math.floor(Math.random()*zombieSounds.length)
             //print(spawnInterval)
+            
+            if (level != 0 && level != 'FINAL'){
             if (targetTimer % spawnInterval == 0){
                 let newZombie = new Zombie();
                 targetZombies.push(newZombie);
                 // console.log(newZombie)
-        
+            }
                 // every certain amount of time, iterate through the sound library
-                // if (targetTimer % 3 == 0) {
-                // 	zombieSounds[randSound].play();
-                // }
+                if (targetTimer % 200 == 0) {
+                	zombieSounds[randSound].play();
+                }
+                // console.log('zombie created')
             }
         
             
@@ -179,13 +195,18 @@ class Game {
             
             
             //-------------------------------------------ZOMBIES----------------------------------------
-            for (var i = 0; i < targetZombies.length; i++){
-                targetZombies[i].display();
-                targetZombies[i].update();
-                if (targetZombies[i].outOfBounds()){
-                      targetZombies.splice(i,1);
+            
+            if (level != 0 && level != 'FINAL'){
+                for (var i = 0; i < targetZombies.length; i++){
+                    targetZombies[i].display();
+                    targetZombies[i].update();
+                    if (targetZombies[i].outOfBounds()){
+                          targetZombies.splice(i,1);
+                    }
                 }
+                // console.log('zombie displayed')
             }
+            
             
             zombieSpawnMultiplier += 0.001;
             if (zombieSizeMultiplier < 5){
@@ -200,20 +221,20 @@ class Game {
             // HERO ROTATION HERE 
 
             if (mainHero.hitScan()){
-                console.log('touched')
+                // console.log('touched')
                 gameOver();
             }
         
             
             //------------------------------------------TUTORIAL------------------------------------------------
 
-            fill(60);
-            textAlign(CENTER);
-            text("version 1.01 by facundoGo", 300, 580);
-        
-            domScore.innerText = score;
+
     
         }
+        fill(60);
+        textAlign(CENTER);
+        text("version 1.01 by facundoGo", 300, 580);
+        domScore.innerText = score;
     }
 }
         

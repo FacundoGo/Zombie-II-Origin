@@ -9,7 +9,7 @@ class Boss{
 		this.xSpd = this.targetDir.x*zombieSpawnMultiplier;
 		this.ySpd = this.targetDir.y*zombieSpawnMultiplier;
 		this.r = 100;
-		this.health = 100;
+		this.health = 5;
 		
 	}
 	
@@ -65,5 +65,8 @@ class Boss{
 		return this.r;
 	}
 	
-		
+	healthBar(){
+           fill('red')
+            rect(10, 10, 10, this.health)
+	}	
 }

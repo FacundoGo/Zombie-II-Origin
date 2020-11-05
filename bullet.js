@@ -1,16 +1,16 @@
 class bullet{
 	constructor(xSpd, ySpd){
-		this.x = turPosX + (20);
-		this.y = turPosY + (10);
+		this.x = turPosX + (10);
+		this.y = turPosY + (5);
 		this.xSpd = 12*xSpd;
 		this.ySpd = 12*ySpd;
 	}
 	
 	display(){
 		push()
-		stroke('230, 255, 0');
-		fill('red');
-		ellipse(this.x, this.y, 10);
+		// stroke('230, 255, 0');
+		fill('black');
+		ellipse(this.x, this.y, 7);
 		
 		pop();
 	}

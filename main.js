@@ -16,6 +16,10 @@ const game = new Game();
 let newBoss;
 let canvas;
 
+
+let mode = 'demo' // for internal use to know which type of game is set - for release, put in "survival mode"
+let baseline = 10 // for demo only, for deployment change to 10 (also change health of boss to 50)
+ 
 let hero; // image of the hero
 let zombie1; // image of the zombie
 let bossImg; // image of the boss
@@ -37,6 +41,9 @@ let level = 0;
 let highScore = 0;
 let bossThreshold = 4;
 
+
+let gameType = document.querySelector('#mySelect').value;
+console.log(gameType)
 let d, g;
 
 function preload() {
@@ -81,7 +88,7 @@ function setup() {
 	mainHero = new Hero(300,300);
 	// Retry = createButton('retry');
 	// Retry.hide();
-	console.log(Retry)
+	
 	// start = createButton('')
 	canvas.mousePressed(startGame);
 	// start.hide();
@@ -91,7 +98,7 @@ function setup() {
 	game.setupGame();
 
 
-	// mainTrack.play();
+	mainTrack.play();
 
 }
 
@@ -102,7 +109,7 @@ function mousePressed(){
 
 	oneBullet = new bullet(mouseVector.x, mouseVector.y);
 	bulletsFired.push(oneBullet);
-	// shot.play();
+	shot.play();
 }
 
 function draw() {
