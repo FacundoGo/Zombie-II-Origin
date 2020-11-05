@@ -43,7 +43,7 @@ let bossThreshold = 4;
 
 
 
-let d, g;
+
 
 function preload() {
 	// preload() runs once
@@ -81,8 +81,7 @@ function preload() {
 function setup() {
 	canvas = createCanvas(600, 600);
 	// canvas.mouseClicked(start);
-	d = 10;
-	g = 100;
+
 	angleMode(DEGREES);
 	mainHero = new Hero(300,300);
 	// Retry = createButton('retry');
